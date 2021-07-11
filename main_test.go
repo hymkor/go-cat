@@ -3,6 +3,7 @@ package cat_test
 import (
 	"bytes"
 	"errors"
+	//"fmt"
 	"io"
 	"testing"
 
@@ -42,4 +43,16 @@ func TestNewReader(t *testing.T) {
 		t.Fatalf("NewReader: %s", err.Error())
 		return
 	}
+
+	r, err = cat.NewReader(".")
+	if err != nil {
+		t.Fatalf("NewReader: %s", err.Error())
+		return
+	}
+	bin, err = io.ReadAll(r)
+	if err == nil {
+		t.Fatalf("ReadAll: errors should be found, but not found")
+		return
+	}
+	//fmt.Printf("%s (%#v)\n", err.Error(), err)
 }
